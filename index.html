@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #ff006e;
+            --accent-color: #8338ec;
+            --light-bg: #f8f9fa;
+            --dark-bg: #212529;
+        }
+        
+        body {
+            padding-top: 65px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('https://t3.ftcdn.net/jpg/02/99/34/20/360_F_299342070_37COnyVQxXCi2jJTvgvbEy9MvqvTcBSW.jpg') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero-image {
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .section-title {
+            position: relative;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .product-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            transition: all 0.5s ease;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-rating {
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .category-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-card img {
+            transition: all 0.5s ease;
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover .category-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+        
+        .category-overlay h4 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .promo-banner {
+            background: linear-gradient(135deg, #fc5c7d 0%, #6a82fb 100%);
+            border-radius: 15px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('https://t3.ftcdn.net/jpg/02/99/34/20/360_F_299342070_37COnyVQxXCi2jJTvgvbEy9MvqvTcBSW.jpg') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .banner-title {
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .banner-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .newsletter-section {
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .newsletter-form .form-control {
+            height: 50px;
+            border-radius: 25px 0 0 25px;
+            padding-left: 20px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .newsletter-form .btn {
+            border-radius: 0 25px 25px 0;
+            padding: 0 25px;
+            height: 50px;
+            font-weight: 600;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding-top: 4rem;
+            margin-top: 5rem;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 1.5px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .toast-container {
+            z-index: 1060;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Shop<span>Ease</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-tshirt me-2"></i>Clothing</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-home me-2"></i>Home & Kitchen</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-heartbeat me-2"></i>Health & Beauty</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-fire me-1"></i>Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-info-circle me-1"></i>About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-2">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search products..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <a href="#" class="text-white me-3" data-bs-toggle="tooltip" title="My Account"><i class="fas fa-user"></i></a>
+                    <a href="#" class="text-white me-3" data-bs-toggle="tooltip" title="Wishlist"><i class="fas fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative" data-bs-toggle="tooltip" title="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Discover Amazing Deals</h1>
+                    <p class="hero-subtitle">Shop the latest products at unbeatable prices!</p>
+                    <div class="d-flex gap-3">
+                        <a href="#featured-products" class="btn btn-light btn-lg rounded-pill px-4 fw-bold">Shop Now</a>
+                        <a href="#" class="btn btn-outline-light btn-lg rounded-pill px-4">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://t3.ftcdn.net/jpg/02/99/34/20/360_F_299342070_37COnyVQxXCi2jJTvgvbEy9MvqvTcBSW.jpg" alt="Shopping" class="img-fluid hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4 class="feature-title">Free Shipping</h4>
+                        <p class="text-muted">On orders over $50</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h4 class="feature-title">Easy Returns</h4>
+                        <p class="text-muted">30 day money back</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h4 class="feature-title">Secure Payment</h4>
+                        <p class="text-muted">100% secure checkout</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 class="feature-title">24/7 Support</h4>
+                        <p class="text-muted">Dedicated support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">New Arrivals</h2>
+                <p class="text-muted">Check out our latest products</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://www.cgdigital.com.np/api/images/products/07sdcI_1736492856-100GTVQ1_1.jpg" class="card-img-top product-image" alt="Smart 4K TV">
+                            <div class="product-badge bg-danger text-white">New</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Smart 4K TV</h5>
+                            <p class="card-text">Ultra HD Smart TV with voice control and streaming apps.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="original-price">$899</span>
+                                    <span class="product-price ms-2">$699</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="ms-1 text-muted">(42)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smarttv.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="10" data-name="Smart 4K TV" data-price="799" data-image="https://www.cgdigital.com.np/api/images/products/07sdcI_1736492856-100GTVQ1_1.jpg"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://itti.com.np/_next/image?url=https%3A%2F%2Fadmin.itti.com.np%2Fstorage%2Fproduct%2Fhp-victus-15-2022-rtx-3050-price-nepal%2Fthumb%2F39e2d354-b8a1-49cc-9e49-4dacff62c3c5.jpeg&w=384&q=75" class="card-img-top product-image" alt="Gaming Laptop">
+                            <div class="product-badge bg-primary text-white">Trending</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Gaming Laptop</h5>
+                            <p class="card-text">High-performance gaming laptop with RGB keyboard and RTX graphics.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="original-price">$2899</span>
+                                    <span class="product-price ms-2">$2499</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(127)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="gaming_laptop.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="11" data-name="Gaming Laptop" data-price="2499" data-image="https://itti.com.np/_next/image?url=https%3A%2F%2Fadmin.itti.com.np%2Fstorage%2Fproduct%2Fhp-victus-15-2022-rtx-3050-price-nepal%2Fthumb%2F39e2d354-b8a1-49cc-9e49-4dacff62c3c5.jpeg&w=384&q=75"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://m.media-amazon.com/images/I/613vdOoh4oL._AC_SL1500_.jpg" class="card-img-top product-image" alt="Smart Watch">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Smart Watch Pro</h5>
+                            <p class="card-text">Advanced fitness tracking with heart rate monitor and sleep analysis.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="product-price">$199</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(86)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smartwatch.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="12" data-name="Smart Watch Pro" data-price="199" data-image="https://m.media-amazon.com/images/I/613vdOoh4oL._AC_SL1500_.jpg"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/d393b03d8be1712164a2876717ef988e.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Bluetooth Speaker">
+                            <div class="product-badge bg-success text-white">Sale</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Bluetooth Speaker</h5>
+                            <p class="card-text">Waterproof portable speaker with 24-hour battery life and deep bass.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="original-price">$129</span>
+                                    <span class="product-price ms-2">$79</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(64)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="blutetooth_speaker.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="13" data-name="Bluetooth Speaker" data-price="79" data-image="https://img.drz.lazcdn.com/static/np/p/d393b03d8be1712164a2876717ef988e.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="promo-banner">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 banner-content">
+                        <h2 class="banner-title">Summer Sale</h2>
+                        <p class="banner-subtitle">Get up to 50% off on selected items. Limited time offer!</p>
+                        <a href="#" class="btn btn-light rounded-pill px-4 fw-bold">Shop the Sale</a>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block text-end">
+                        <span class="display-1 fw-bold text-white opacity-50">50% OFF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-products" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="text-muted">Handpicked products just for you</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/4bb07a43769758859027f3e012c62d3f.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Premium Smartphone">
+                            <div class="product-badge bg-danger text-white">Sale</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Premium Smartphone</h5>
+                            <p class="card-text">A high-end smartphone with amazing camera and performance.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="original-price">$1299</span>
+                                    <span class="product-price ms-2">$1099</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="ms-1 text-muted">(120)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smartphone.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="109" data-name="Google Pixel 9 pro" data-price="1099" data-image="https://img.drz.lazcdn.com/static/np/p/4bb07a43769758859027f3e012c62d3f.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/d8ab600a56930bc61da564082187a45d.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Wireless Headphones">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Wireless Headphones</h5>
+                            <p class="card-text">Noise-cancelling wireless headphones with premium sound quality.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="product-price">$149</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(95)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="headphones.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="222" data-name="Wireless Headphones" data-price="149" data-image="https://img.drz.lazcdn.com/static/np/p/d8ab600a56930bc61da564082187a45d.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Fitness Tracker">
+                            <div class="product-badge bg-primary text-white">Best Seller</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Fitness Tracker</h5>
+                            <p class="card-text">Track your fitness goals with this advanced activity tracker.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="original-price">$149</span>
+                                    <span class="product-price ms-2">$99</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(78)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="fitness_tracker.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="333" data-name="Fitness Tracker" data-price="99" data-image="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://www.cnet.com/a/img/resize/f5a9d3d0bde4745d6f6d50559a6d6f5ab74aabaa/hub/2020/10/21/0608c58e-c3c8-4e25-85b9-9d155c0c56e2/amazon-echo-2020-2.jpg?auto=webp&fit=crop&height=675&width=1200" class="card-img-top product-image" alt="Smart Home Hub">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Smart Home Hub</h5>
+                            <p class="card-text">Control your smart home devices with voice commands and automation.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <span class="product-price">$119</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(42)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smart_home.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="444" data-name="Smart Home Hub" data-price="119" data-image="https://aeotec.com/wp-content/uploads/2022/06/Aeotec_Smart-Home-Hub_newslounge.jpg.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="text-muted">Browse our top categories</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://www.polytechnichub.com/wp-content/uploads/2017/04/Electronic.jpg" alt="Electronics">
+                        <div class="category-overlay">
+                            <h4>Electronics</h4>
+                            <a href="#" class="btn btn-light rounded-pill px-4">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://www.cato.org/sites/cato.org/files/styles/aside_3x/public/2023-11/fast-fashion2.jpeg?itok=72ek8bxI" alt="Fashion">
+                        <div class="category-overlay">
+                            <h4>Fashion</h4>
+                            <a href="#" class="btn btn-light rounded-pill px-4">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://m.media-amazon.com/images/I/71rFP2DYKBL._AC_SL1500_.jpg" alt="Home & Kitchen">
+                        <div class="category-overlay">
+                            <h4>Home & Kitchen</h4>
+                            <a href="#" class="btn btn-light rounded-pill px-4">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="newsletter-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="mb-2">Subscribe to our Newsletter</h3>
+                        <p class="text-muted mb-0">Get updates on new products and exclusive offers.</p>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Enter your email address">
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="footer-title">Shop<span style="color: var(--secondary-color)">Ease</span></h3>
+                    <p class="text-muted">Your one-stop shop for all your needs. Quality products at unbeatable prices.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#">Shop</a>
+                        <a href="#">Categories</a>
+                        <a href="#">Deals</a>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-title">Customer Service</h4>
+                    <div class="footer-links">
+                        <a href="#">My Account</a>
+                        <a href="#">Track Order</a>
+                        <a href="#">Shipping & Returns</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Main Street, City, Country</p>
+                    <p class="mb-2"><i class="fas fa-phone me-2"></i> (123) 456-7890</p>
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i> info@shopease.com</p>
+                    <p class="mb-0"><i class="fas fa-clock me-2"></i> Mon-Fri: 9AM-6PM</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom mt-5">
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2025 ShopEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span id="toast-message">Item added to cart successfully!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+            updateCartCount();
+    
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const name = this.dataset.name;
+                    const price = parseFloat(this.dataset.price);
+                    const image = this.dataset.image;
+                    const size = this.dataset.size || "N/A";
+    
+                    const existingItemIndex = cart.findIndex(item => item.id === id && item.size === size);
+    
+                    if (existingItemIndex > -1) {
+                        cart[existingItemIndex].quantity += 1;
+                    } else {
+                        cart.push({
+                            id: id,
+                            name: name,
+                            price: price,
+                            image: image,
+                            size: size,
+                            quantity: 1
+                        });
+                    }
+    
+                    sessionStorage.setItem('cart', JSON.stringify(cart));
+    
+                    updateCartCount();
+    
+                    showToast(`${name} (Size: ${size}) added to cart!`);
+                });
+            });
+    
+            function updateCartCount() {
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                    cartCount.textContent = totalItems;
+                }
+            }
+    
+            function showToast(message, type = "info") {
+                let toastContainer = document.getElementById('toast-container');
+                if (!toastContainer) {
+                    toastContainer = document.createElement('div');
+                    toastContainer.id = 'toast-container';
+                    toastContainer.classList.add('toast-container', 'position-fixed', 'top-0', 'end-0', 'p-3');
+                    document.body.appendChild(toastContainer);
+                }
+    
+                const toast = document.createElement('div');
+                toast.classList.add('toast', `bg-${type}`);
+                toast.setAttribute('role', 'alert');
+                toast.setAttribute('aria-live', 'assertive');
+                toast.setAttribute('aria-atomic', 'true');
+    
+                const toastBody = document.createElement('div');
+                toastBody.classList.add('toast-body', 'text-white');
+                toastBody.textContent = message;
+    
+                const closeBtn = document.createElement('button');
+                closeBtn.classList.add('btn-close', 'btn-close-white', 'me-2', 'm-auto');
+                closeBtn.setAttribute('type', 'button');
+                closeBtn.setAttribute('data-bs-dismiss', 'toast');
+                closeBtn.setAttribute('aria-label', 'Close');
+    
+                const toastHeader = document.createElement('div');
+                toastHeader.classList.add('toast-header', `bg-${type}`, 'text-white');
+                const strong = document.createElement('strong');
+                strong.classList.add('me-auto');
+                strong.textContent = 'Notification';
+    
+                toastHeader.appendChild(strong);
+                toastHeader.appendChild(closeBtn);
+    
+                toast.appendChild(toastHeader);
+                toast.appendChild(toastBody);
+                toastContainer.appendChild(toast);
+    
+                const bsToast = new bootstrap.Toast(toast);
+                bsToast.show();
+            }
+    
+        });
+    </script>
+</body>
+</html>

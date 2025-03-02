@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #ff006e;
+            --accent-color: #8338ec;
+            --light-bg: #f8f9fa;
+            --dark-bg: #212529;
+        }
+
+        body {
+            padding-top: 76px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+        }
+
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        
+        .newsletter-section {
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .newsletter-form .form-control {
+            height: 50px;
+            border-radius: 25px 0 0 25px;
+            padding-left: 20px;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .newsletter-form .btn {
+            border-radius: 0 25px 25px 0;
+            padding: 0 25px;
+            height: 50px;
+            font-weight: 600;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding-top: 4rem;
+            margin-top: 5rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 1.5px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toast-container {
+            z-index: 1060;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Shop<span>Ease</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-th-large me-1"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-laptop me-2"></i>Electronics</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-tshirt me-2"></i>Clothing</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-home me-2"></i>Home & Kitchen</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-book me-2"></i>Books</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-heartbeat me-2"></i>Health & Beauty</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-fire me-1"></i>Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-info-circle me-1"></i>About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-2">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search products..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <a href="#" class="text-white me-3" data-bs-toggle="tooltip" title="My Account"><i class="fas fa-user"></i></a>
+                    <a href="#" class="text-white me-3" data-bs-toggle="tooltip" title="Wishlist"><i class="fas fa-heart"></i></a>
+                    <a href="cart.html" class="text-white position-relative" data-bs-toggle="tooltip" title="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container breadcrumb-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Electronics</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Fitness Smartwatch</li>
+            </ol>
+        </nav>
+    </div>
+
+    <section class="product-detail py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="product-images">
+                        <div class="main-image mb-3">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/f95c4bbbc93113feb1687b6f98dca7bf.jpg_400x400q75.jpg_.webp" id="main-product-image" class="img-fluid rounded" alt="Fitness Smartwatch">
+                        </div>
+                        <div class="image-gallery d-flex">
+                            <div class="thumbnail-image active" onclick="changeImage(this, 'https://img.drz.lazcdn.com/g/kf/S1febe0c66e59466eb4d13e1bcc375cb9W.jpg_400x400q75.jpg_.webp')">
+                                <img src="https://img.drz.lazcdn.com/g/kf/S1febe0c66e59466eb4d13e1bcc375cb9W.jpg_400x400q75.jpg_.webp" class="img-fluid rounded" alt="Thumbnail 1">
+                            </div>
+                            <div class="thumbnail-image" onclick="changeImage(this, 'https://img.drz.lazcdn.com/g/kf/S359ceb69dddd47f1b815870a5806631at.jpg_400x400q75.jpg_.webp')">
+                                <img src="https://img.drz.lazcdn.com/g/kf/S359ceb69dddd47f1b815870a5806631at.jpg_400x400q75.jpg_.webp" class="img-fluid rounded" alt="Thumbnail 2">
+                            </div>
+                            <div class="thumbnail-image" onclick="changeImage(this, 'https://img.drz.lazcdn.com/g/kf/S827d0dca5fe04ed588b159463bfe3055w.jpg_400x400q75.jpg_.webp')">
+                                <img src="https://img.drz.lazcdn.com/g/kf/S827d0dca5fe04ed588b159463bfe3055w.jpg_400x400q75.jpg_.webp" class="img-fluid rounded" alt="Thumbnail 3">
+                            </div>
+                            <div class="thumbnail-image" onclick="changeImage(this, 'https://img.drz.lazcdn.com/g/kf/Sef0b6e816e5444c58b87a462f74b30afx.jpg_400x400q75.jpg_.webp')">
+                                <img src="https://img.drz.lazcdn.com/g/kf/Sef0b6e816e5444c58b87a462f74b30afx.jpg_400x400q75.jpg_.webp" class="img-fluid rounded" alt="Thumbnail 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="product-info">
+                        <h1 class="product-title">Fitness Smartwatch</h1>
+                        <div class="product-meta d-flex align-items-center mb-3">
+                            <div class="product-rating me-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <span class="ms-1">(210 reviews)</span>
+                            </div>
+                            <span class="product-sku text-muted">SKU: SWAT-001</span>
+                        </div>
+
+                        <div class="product-price mb-3">
+                            <span class="current-price fs-3 fw-bold ms-2">$199</span>
+                        </div>
+
+                        <div class="product-availability text-success mb-3">
+                            <i class="fas fa-check-circle me-1"></i> In Stock
+                        </div>
+
+                        <div class="product-description mb-4">
+                            <p>Stay connected and track your fitness goals with our Fitness Smartwatch. This smartwatch features heart rate monitoring, activity tracking, sleep analysis, and smartphone notifications, all in a sleek and stylish design.</p>
+                            <ul>
+                                <li>Heart Rate Monitoring</li>
+                                <li>Activity Tracking (Steps, Calories, Distance)</li>
+                                <li>Sleep Analysis</li>
+                                <li>Smartphone Notifications</li>
+                                <li>GPS Tracking</li>
+                                <li>Water Resistant (IP67)</li>
+                                <li>Long Battery Life (Up to 7 days)</li>
+                            </ul>
+                        </div>
+
+                        <div class="product-variants mb-4">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Color</label>
+                                    <select id="product-color" class="form-select">
+                                        <option value="black">Sport Black</option>
+                                        <option value="blue">Ocean Blue</option>
+                                        <option value="pink">Rose Gold</option>
+                                    </select>
+                                </div>
+                                 <div class="col-md-6 mb-3">
+                                     <label for="product-size" class="form-label">Size</label>
+                                        <select class="form-select" id="product-size">
+                                            <option value="40mm">40mm</option>
+                                            <option value="44mm">44mm</option>
+                                     </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-actions d-flex flex-wrap mb-4">
+                            <div class="quantity-selector me-3 mb-2">
+                                <div class="input-group">
+                                    <button class="btn btn-outline-secondary quantity-minus" type="button"><i class="fas fa-minus"></i></button>
+                                    <input type="text" id="product-quantity" class="form-control text-center quantity-input" value="1" min="1">
+                                    <button class="btn btn-outline-secondary quantity-plus" type="button"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-lg flex-grow-1 mb-2" onclick="addToCartFromDetail()">
+                                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                            </button>
+                        </div>
+
+                        <div class="product-extra-info">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-truck text-primary me-2"></i>
+                                <span>Free shipping on orders over $50</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-undo text-primary me-2"></i>
+                                <span>30-day return policy</span>
+                            </div>
+                              <div class="d-flex align-items-center">
+                                <i class="fas fa-heart text-primary me-2"></i>
+                                <span>1-year warranty</span>
+                            </div>
+                        </div>
+
+                        <div class="product-social-share mt-4">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2">Share:</span>
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-1"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-1"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-1"><i class="fab fa-pinterest"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-tabs py-5 bg-light">
+        <div class="container">
+            <ul class="nav nav-tabs mb-4" id="productTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="specifications-tab" data-bs-toggle="tab" data-bs-target="#specifications" type="button" role="tab">Specifications</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews (210)</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="productTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Fitness Smartwatch</h4>
+                            <p>Take control of your health and fitness journey with our Fitness Smartwatch. This stylish and functional smartwatch helps you track your activity, monitor your heart rate, analyze your sleep, and stay connected with smart notifications.</p>
+
+                            <h5 class="mt-4">Comprehensive Activity Tracking</h5>
+                            <p>Track your steps, distance, calories burned, and active minutes throughout the day. Set personalized goals and monitor your progress to stay motivated.</p>
+
+                            <h5 class="mt-4">24/7 Heart Rate Monitoring</h5>
+                            <p>Continuously monitor your heart rate to gain insights into your fitness level and overall health.  Identify trends and optimize your workouts.</p>
+
+                            <h5 class="mt-4">Sleep Analysis</h5>
+                            <p>Track your sleep stages (light, deep, REM) and receive a sleep score to understand your sleep quality.  Improve your sleep habits for better rest and recovery.</p>
+
+                            <h5 class="mt-4">Stay Connected</h5>
+                            <p>Receive notifications for calls, texts, emails, and calendar events directly on your wrist.  Stay connected without constantly checking your phone.</p>
+
+                             <h5 class="mt-4">GPS Tracking</h5>
+                            <p>Built-in GPS accurately tracks your outdoor workouts, including running, cycling, and hiking.  View your route, distance, and pace on the watch or in the companion app.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="specifications" role="tabpanel">
+                   <div class="card">
+                        <div class="card-body">
+                            <h4>Technical Specifications</h4>
+                            <table class="table table-striped specification-table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Display</th>
+                                        <td>1.3-inch Color Touchscreen</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Resolution</th>
+                                        <td>240 x 240 pixels</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Battery Life</th>
+                                        <td>Up to 7 days (typical usage)</td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="row">Charging Time</th>
+                                        <td>Approx. 2 hours</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Water Resistance</th>
+                                        <td>IP67 (Splash and dust resistant)</td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="row">GPS</th>
+                                        <td>Built-in GPS</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Heart Rate Monitor</th>
+                                        <td>Optical Heart Rate Sensor</td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="row">Connectivity</th>
+                                        <td>Bluetooth 5.0</td>
+                                     </tr>
+                                    <tr>
+                                        <th scope="row">Compatibility</th>
+                                        <td>iOS 10.0+ and Android 5.0+</td>
+                                    </tr>
+                                     <tr>
+                                        <th scope="row">Sensors</th>
+                                        <td>Accelerometer, Gyroscope, Heart Rate Sensor</td>
+                                    </tr>
+                                     <tr>
+                                         <th scope="row">Dimensions</th>
+                                        <td>44mm x 38mm x 10.7mm (44mm version) / 40mm x 34mm x 10.7mm (40mm version)</td>
+                                     </tr>
+                                    <tr>
+                                        <th scope="row">Weight</th>
+                                        <td>36.5g (44mm) / 30.5g (40mm)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Materials</th>
+                                        <td>Aluminum case, Silicone band</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-md-4 border-end">
+                                    <div class="text-center">
+                                        <h3 class="review-average">4.8</h3>
+                                        <div class="product-rating mb-2">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                        </div>
+                                        <p class="text-muted">Based on 210 reviews</p>
+                                    </div>
+                                     <div class="rating-breakdown">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="me-2">5 <i class="fas fa-star text-warning small"></i></span>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" style="width: 80%;"></div>
+                                            </div>
+                                            <span class="ms-2 text-muted small">80%</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="me-2">4 <i class="fas fa-star text-warning small"></i></span>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" style="width: 15%;"></div>
+                                            </div>
+                                            <span class="ms-2 text-muted small">15%</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="me-2">3 <i class="fas fa-star text-warning small"></i></span>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-warning" style="width: 3%;"></div>
+                                            </div>
+                                            <span class="ms-2 text-muted small">3%</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="me-2">2 <i class="fas fa-star text-warning small"></i></span>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-danger" style="width: 1%;"></div>
+                                            </div>
+                                            <span class="ms-2 text-muted small">1%</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <span class="me-2">1 <i class="fas fa-star text-warning small"></i></span>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-danger" style="width: 1%;"></div>
+                                            </div>
+                                            <span class="ms-2 text-muted small">1%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h4 class="mb-3">Customer Reviews</h4>
+                                    <div class="review-item mb-4 pb-4 border-bottom">
+                                      <div class="d-flex justify-content-between mb-2">
+                                        <div class="reviewer-info">
+                                          <h5 class="mb-0">Jessica L.</h5>
+                                          <div class="text-muted small">Verified Purchase</div>
+                                        </div>
+                                        <div class="review-date text-muted small">2 days ago</div>
+                                      </div>
+                                      <div class="product-rating mb-2">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                      </div>
+                                      <h6>Love this smartwatch!</h6>
+                                      <p>This smartwatch has exceeded my expectations. It's comfortable to wear, the battery life is great, and it tracks everything I need. The notifications are also very convenient.</p>
+                                      <div class="helpful-section">
+                                        <span class="text-muted me-3">Was this review helpful?</span>
+                                        <button class="btn btn-sm btn-outline-secondary me-2">Yes (18)</button>
+                                        <button class="btn btn-sm btn-outline-secondary">No (1)</button>
+                                      </div>
+                                    </div>
+
+                                    <div class="review-item mb-4 pb-4 border-bottom">
+                                        <div class="d-flex justify-content-between mb-2">
+                                          <div class="reviewer-info">
+                                            <h5 class="mb-0">David K.</h5>
+                                            <div class="text-muted small">Verified Purchase</div>
+                                          </div>
+                                          <div class="review-date text-muted small">1 week ago</div>
+                                        </div>
+                                        <div class="product-rating mb-2">
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="far fa-star text-warning"></i>
+                                        </div>
+                                        <h6>Great features, but the app could be improved</h6>
+                                        <p>The smartwatch itself is excellent. It tracks my activity accurately and the heart rate monitor is reliable. However, the companion app could use some improvements in terms of user interface and data visualization.</p>
+                                        <div class="helpful-section">
+                                          <span class="text-muted me-3">Was this review helpful?</span>
+                                          <button class="btn btn-sm btn-outline-secondary me-2">Yes (10)</button>
+                                          <button class="btn btn-sm btn-outline-secondary">No (2)</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="review-item">
+                                        <div class="d-flex justify-content-between mb-2">
+                                          <div class="reviewer-info">
+                                            <h5 class="mb-0">Sophia M.</h5>
+                                            <div class="text-muted small">Verified Purchase</div>
+                                          </div>
+                                          <div class="review-date text-muted small">3 weeks ago</div>
+                                        </div>
+                                        <div class="product-rating mb-2">
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star text-warning"></i>
+                                          <i class="fas fa-star-half-alt text-warning"></i>
+                                        </div>
+                                        <h6>Excellent value for a fitness smartwatch</h6>
+                                        <p>I'm very happy with this purchase. It's a great smartwatch for the price, with all the essential features I need for tracking my fitness. The battery life is also impressive.</p>
+                                        <div class="helpful-section">
+                                          <span class="text-muted me-3">Was this review helpful?</span>
+                                          <button class="btn btn-sm btn-outline-secondary me-2">Yes (15)</button>
+                                          <button class="btn btn-sm btn-outline-secondary">No (0)</button>
+                                        </div>
+                                      </div>
+
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-outline-secondary">Load More Reviews</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="write-review-section mt-4 pt-4 border-top">
+                                <h4 class="mb-3">Write a Review</h4>
+                                <form>
+                                    <div class="mb-3">
+                                        <label class="form-label">Your Rating</label>
+                                        <div class="rating-selector">
+                                            <i class="far fa-star text-warning rating-star" data-rating="1"></i>
+                                            <i class="far fa-star text-warning rating-star" data-rating="2"></i>
+                                            <i class="far fa-star text-warning rating-star" data-rating="3"></i>
+                                            <i class="far fa-star text-warning rating-star" data-rating="4"></i>
+                                            <i class="far fa-star text-warning rating-star" data-rating="5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reviewTitle" class="form-label">Review Title</label>
+                                        <input type="text" class="form-control" id="reviewTitle" placeholder="Summarize your experience">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reviewContent" class="form-label">Your Review</label>
+                                        <textarea class="form-control" id="reviewContent" rows="4" placeholder="Tell others about your experience with this product"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="related-products py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">You May Also Like</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/4bb07a43769758859027f3e012c62d3f.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Smartphone">
+                            <div class="product-badge bg-danger text-white">Sale</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Premium Smartphone</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-muted text-decoration-line-through">$999</span>
+                                    <span class="fw-bold ms-2">$799</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smartphone.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="1" data-name="Premium Smartphone" data-price="799" data-image="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/d8ab600a56930bc61da564082187a45d.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Wireless Headphones">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Wireless Headphones</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$249</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(85)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="headphones.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="2" data-name="Wireless Headphones" data-price="249" data-image="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp" class="card-img-top product-image" alt="Smartwatch">
+                            <div class="product-badge bg-primary text-white">New</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Fitness Smartwatch</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="fw-bold">$199</span>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <span class="ms-1 text-muted">(210)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="smartwatch.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                             <button class="btn btn-sm btn-primary add-to-cart" data-id="3" data-name="Fitness Smartwatch" data-price="199" data-image="https://img.drz.lazcdn.com/static/np/p/72f3041de192a935952b815f254e41cd.jpg_400x400q75.jpg_.webp"><i class="fas fa-cart-plus me-1"></i>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://itti.com.np/_next/image?url=https%3A%2F%2Fadmin.itti.com.np%2Fstorage%2Fproduct%2Fhp-victus-15-2022-rtx-3050-price-nepal%2Fthumb%2F39e2d354-b8a1-49cc-9e49-4dacff62c3c5.jpeg&w=384&q=75" class="card-img-top product-image" alt="Smartphone Case">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Gaming Laptop</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold">$2499.99</span>
+                                <div class="product-rating">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+                            <a href="gaming_laptop.html" class="btn btn-sm btn-outline-secondary">View Details</a>
+                           <button class="btn btn-sm btn-primary add-to-cart" data-id="5" data-name="Gaming Laptop" data-price="2499.99" data-image="https://itti.com.np/_next/image?url=https%3A%2F%2Fadmin.itti.com.np%2Fstorage%2Fproduct%2Fhp-victus-15-2022-rtx-3050-price-nepal%2Fthumb%2F39e2d354-b8a1-49cc-9e49-4dacff62c3c5.jpeg&w=384&q=75"><i class="fas fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="newsletter-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h3 class="mb-2">Subscribe to our Newsletter</h3>
+                        <p class="text-muted mb-0">Get updates on new products and exclusive offers.</p>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Enter your email address">
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>ShopEase</h5>
+                    <p class="text-muted">Your one-stop shop for premium electronics and accessories.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Shop</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Electronics</a></li>
+                        <li><a href="#" class="text-muted">Clothing</a></li>
+                        <li><a href="#" class="text-muted">Home & Kitchen</a></li>
+                        <li><a href="#" class="text-muted">Books</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5>Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Contact Us</a></li>
+                        <li><a href="#" class="text-muted">Track Order</a></li>
+                        <li><a href="#" class="text-muted">Return Policy</a></li>
+                        <li><a href="#" class="text-muted">Shipping Info</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Newsletter</h5>
+                    <p class="text-muted">Subscribe to receive updates on new products and special promotions.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0 text-muted">© 2025 ShopEase. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <img src="https://via.placeholder.com/300x50" alt="Payment Methods" class="payment-methods">
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <script>
+    function changeImage(thumbnail, imageSrc) {
+        document.getElementById('main-product-image').src = imageSrc;
+    
+        document.querySelectorAll('.thumbnail-image').forEach(el => {
+            el.classList.remove('active');
+        });
+        thumbnail.classList.add('active');
+    }
+    </script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    updateCartCount();
+    
+    const quantityPlus = document.querySelector('.quantity-plus');
+    const quantityMinus = document.querySelector('.quantity-minus');
+    const quantityInput = document.querySelector('.quantity-input');
+    
+    
+    if (quantityPlus) {
+        quantityPlus.addEventListener('click', function() {
+            let value = parseInt(quantityInput.value, 10);
+            quantityInput.value = isNaN(value) ? 1 : value + 1;
+        });
+    }
+    if (quantityMinus) {
+        quantityMinus.addEventListener('click', function() {
+            let value = parseInt(quantityInput.value, 10);
+            if (value > 1) {
+                quantityInput.value = isNaN(value) ? 1 : value - 1;
+            }
+        });
+    }
+    
+    
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const productId = this.dataset.id;
+            const productName = this.dataset.name;
+            const productPrice = parseFloat(this.dataset.price);
+            const productImage = this.dataset.image;
+    
+            const productSize = "N/A";
+    
+            addToCart(productId, productName, productPrice, productImage, productSize, 1);
+    
+        });
+    });
+        displayCart();
+    
+    });
+    
+    
+    function addToCart(id, name, price, image, size, quantity) {
+    let cart = getCart();
+    let itemIndex = cart.findIndex(item => item.id === id && item.size === size);
+    
+    if (itemIndex > -1) {
+        cart[itemIndex].quantity += quantity;
+    } else {
+        cart.push({ id, name, price, image, size, quantity });
+    }
+    
+    saveCart(cart);
+    showToast(`${name} (Size: ${size}) added to cart!`);
+    }
+    
+    
+    function addToCartFromDetail() {
+        const productId = "20";
+        const productName = "Smart Watch";
+        const productPrice = 199;
+        const productImage = "https://img.drz.lazcdn.com/static/np/p/f95c4bbbc93113feb1687b6f98dca7bf.jpg_400x400q75.jpg_.webp";
+        const productColor = document.getElementById('product-color').value;
+        const productSize = document.getElementById('product-size').value;
+        const productQuantity = parseInt(document.getElementById('product-quantity').value);
+        const selectedSize = `${productColor}, ${productSize}`;
+    
+    
+        addToCart(productId, productName, productPrice, productImage, selectedSize, productQuantity);
+    }
+    
+    
+    
+    function getCart() {
+    let cart = sessionStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+    }
+    
+    function saveCart(cart) {
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    }
+    
+    
+    function updateCartCount() {
+    let cart = getCart();
+    let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let cartCountElement = document.querySelector('.cart-count');
+    if (cartCountElement) {
+      cartCountElement.textContent = count;
+    }
+    
+    }
+    function displayCart() {
+     if (!window.location.pathname.endsWith('cart.html')) {
+        return;
+    }
+    
+    let cart = getCart();
+    let cartItemsElement = document.getElementById('cart-items');
+    let cartTotalElement = document.getElementById('cart-total');
+    let total = 0;
+    
+    cartItemsElement.innerHTML = '';
+    
+    if (cart.length === 0) {
+        cartItemsElement.innerHTML = '<tr><td colspan="6">Your cart is empty.</td></tr>';
+        cartTotalElement.textContent = 'Total: $0';
+        return;
+    }
+    
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+    
+        let row = `<tr>
+            <td><img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">${item.name}</td>
+            <td>${item.size}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>${item.quantity}</td>
+            <td>$${itemTotal.toFixed(2)}</td>
+            <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
+        </tr>`;
+        cartItemsElement.innerHTML += row;
+    });
+    
+    cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+    }
+    
+    
+    function removeFromCart(index) {
+    let cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    displayCart();
+    showToast("Item removed from cart!", "warning");
+    }
+    
+    function clearCart() {
+    sessionStorage.removeItem('cart');
+    updateCartCount();
+    displayCart();
+    showToast("Cart cleared!", "info");
+    }
+    
+    function checkout() {
+    let cart = getCart();
+    if (cart.length === 0) {
+        showToast("Your Cart is Empty!", "warning");
+        return;
+    }
+    showToast("Thanks for Order!", "success");
+    clearCart();
+    }
+    
+    
+    function showToast(message, type = "info") {
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.classList.add('toast-container', 'position-fixed', 'top-0', 'end-0', 'p-3');
+        document.body.appendChild(toastContainer);
+    }
+    
+    const toast = document.createElement('div');
+    toast.classList.add('toast', `bg-${type}`);
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+    
+    const toastBody = document.createElement('div');
+    toastBody.classList.add('toast-body', 'text-white');
+    toastBody.textContent = message;
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('btn-close', 'btn-close-white', 'me-2', 'm-auto');
+    closeBtn.setAttribute('type', 'button');
+    closeBtn.setAttribute('data-bs-dismiss', 'toast');
+    closeBtn.setAttribute('aria-label', 'Close');
+    
+    const toastHeader = document.createElement('div');
+    toastHeader.classList.add('toast-header', `bg-${type}`, 'text-white');
+    
+     const strong = document.createElement('strong');
+    strong.classList.add('me-auto');
+    strong.textContent = 'Notification';
+    
+    toastHeader.appendChild(strong);
+    toastHeader.appendChild(closeBtn);
+    
+    
+    toast.appendChild(toastHeader);
+    toast.appendChild(toastBody);
+    toastContainer.appendChild(toast);
+    
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+    }
+    </script>
+    </body>
+    </html>
+
