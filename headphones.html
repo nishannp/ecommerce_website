@@ -155,6 +155,46 @@
         .toast-container {
             z-index: 1060;
         }
+
+        .breadcrumb-container {
+    padding: 10px 0;
+    background-color: #f8f9fa;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+    font-weight: 600;
+}
+
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    padding: 0 10px;
+    color: #6c757d;
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -261,9 +301,9 @@
                     </div>
 
                     <div class="product-price mb-3">
-                        <span class="text-muted text-decoration-line-through fs-5">$199</span>
-                        <span class="current-price fs-3 fw-bold ms-2">$149</span>
-                        <span class="badge bg-success ms-2">SAVE $50</span>
+                        <span class="text-muted text-decoration-line-through fs-5">£199</span>
+                        <span class="current-price fs-3 fw-bold ms-2">£149</span>
+                        <span class="badge bg-success ms-2">SAVE £50</span>
                     </div>
 
                     <div class="product-availability text-success mb-3">
@@ -322,7 +362,7 @@
                     <div class="product-extra-info">
                         <div class="d-flex align-items-center mb-2">
                             <i class="fas fa-truck text-primary me-2"></i>
-                            <span>Free shipping on orders over $50</span>
+                            <span>Free shipping on orders over £50</span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <i class="fas fa-undo text-primary me-2"></i>
@@ -642,8 +682,8 @@
                             <h5 class="card-title">Premium Smartphone</h5>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <span class="text-muted text-decoration-line-through">$999</span>
-                                    <span class="fw-bold ms-2">$799</span>
+                                    <span class="text-muted text-decoration-line-through">£999</span>
+                                    <span class="fw-bold ms-2">£799</span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="fas fa-star text-warning"></i>
@@ -669,7 +709,7 @@
                             <h5 class="card-title">Wireless Headphones</h5>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <span class="fw-bold">$249</span>
+                                    <span class="fw-bold">£249</span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="fas fa-star text-warning"></i>
@@ -697,7 +737,7 @@
                             <h5 class="card-title">Fitness Smartwatch</h5>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <span class="fw-bold">$199</span>
+                                    <span class="fw-bold">£199</span>
                                 </div>
                                 <div class="product-rating">
                                     <i class="fas fa-star text-warning"></i>
@@ -724,7 +764,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Gaming Laptop</h5>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold">$2499.99</span>
+                                <span class="fw-bold">£2499.99</span>
                                 <div class="product-rating">
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star text-warning"></i>
@@ -905,7 +945,7 @@ function addToCartFromDetail() {
      const productId = "2";
     const productName = "Wireless Headphones";
     const productPrice = 249;
-    const productImage = "https://via.placeholder.com/600";
+    const productImage = "https://img.drz.lazcdn.com/static/np/p/d8ab600a56930bc61da564082187a45d.jpg_400x400q75.jpg_.webp";
     const productColor = document.getElementById('product-color').value;
     const productQuantity = parseInt(document.getElementById('product-quantity').value);
     const productSize = `${productColor}`;
@@ -949,7 +989,7 @@ function displayCart() {
 
     if (cart.length === 0) {
         cartItemsElement.innerHTML = '<tr><td colspan="6">Your cart is empty.</td></tr>';
-        cartTotalElement.textContent = 'Total: $0';
+        cartTotalElement.textContent = 'Total: £0';
         return;
     }
 
@@ -960,15 +1000,15 @@ function displayCart() {
         let row = `<tr>
             <td><img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">${item.name}</td>
             <td>${item.size}</td>
-            <td>$${item.price.toFixed(2)}</td>
+            <td>£${item.price.toFixed(2)}</td>
             <td>${item.quantity}</td>
-            <td>$${itemTotal.toFixed(2)}</td>
+            <td>£${itemTotal.toFixed(2)}</td>
             <td><button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">Remove</button></td>
         </tr>`;
         cartItemsElement.innerHTML += row;
     });
 
-    cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+    cartTotalElement.textContent = `Total: £${total.toFixed(2)}`;
 }
 
 
